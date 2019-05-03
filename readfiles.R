@@ -16,7 +16,7 @@
 
 # SETUP ------------------------------------------------------------
 #local files
-setwd("C:\\Users\\Ennio\\Google Drive\\Acad?mico\\Assistencia pesquisa\\FB - MA")
+setwd("C:\\Users\\Ennio\\Google Drive\\Academico\\Assistencia pesquisa\\FB - MA")
 library(stringr)
 library(readxl)
 library(utils)
@@ -47,25 +47,37 @@ if(length(fin)+length(own)+length(deal) == length(file_list)) {
       print("file_list split error: check lines")
 }
 
-#       USDEALS: -------------------------------------------------------
-#unz(zipfile,deal[1])
-dealread <- read_xlsx(deal[1], sheet = "Results", col_names = T, na = "n.a.", col_types = rep("text",206), n_max = 100)
-dealread <- dealread[,c(1,2,3,4,5,6,7,8,9,10,11,12,15,16,17,19,20,25,26,27,30,33,40,41,42,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64)]
-dealread <- unique(dealread)
+#  USDEALS: -------------------------------------------------------
 
-#NAs replace with the above value in the same dealnumber
-dealnumber <- as.data.frame(unique(dealread[,2]))[,1]
-for (i in dealnumber) {
+#loop to read all deal xlsx files compressed in zip
+#it could be created a function
+
+start_time <- Sys.time()
+dealdata <- NULL
+for (n in 1:length(deal)) {
+   unzip(zipfile, deal[n], overwrite = T)
+   
+   dealread <- read_xlsx(deal[n], sheet = "Results", col_names = T, na = "n.a.", col_types = rep("text",206))
+   dealread <- dealread[,c(1,2,3,4,5,6,7,8,9,10,11,12,15,16,17,19,20,25,26,27,30,33,40,41,42,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64)]
+   dealread <- unique(dealread)
+   
+   #NAs replace with the above value in the same dealnumber
+   dealnumber <- as.data.frame(unique(dealread[,2]))[,1]
+   for (i in dealnumber) {
       for (j in 1:ncol(dealread)) {
-            temp <- dplyr::filter(dealread, `Deal Number` == i)[[j]][1]
-            dealread[dealread[,2]==i & is.na(dealread[,j]),j] <- temp
-            rm(temp)
+         temp <- dplyr::filter(dealread, `Deal Number` == i)[[j]][1]
+         dealread[dealread[,2]==i & is.na(dealread[,j]),j] <- temp
+         rm(temp)
       }
+      rm(j)
+   }
+   dealread <- unique(dealread)
+   
+   dealdata <- bind_rows(dealdata, dealread)
+   rm(dealread,dealnumber,i)
+   file.remove(deal[n])
 }
-rm(dealnumber,i)
-dealread <- unique(dealread)
 
-
-unz(zipfile,deal[1])
-zip.file.extract(deal[1], zipname = zipfile, unzip = getOption("unzip"))
-unz(zipfile,)
+end_time <- Sys.time()
+print(str_c("Running time: ", round(end_time - start_time,0), " min."))
+rm(end_time, start_time,n)
