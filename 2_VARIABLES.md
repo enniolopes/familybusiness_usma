@@ -1,19 +1,19 @@
 # Family Business US Merge and Acquisition (M&A) Project
 
 # 2. Variables  
-### [**A1.**] Ownership similarity and Target selection  
+### [**A1.**] Ownership Similarity and Target Selection  
   
 #### **2.1. Dependent Variable**  
 **Acquisition Occurrence** - dummy variable that describes if the acquisition occurred (acquisition implies control). If the final shareholding is greater than 50% and the initial is less than 50% the Dummy assumes value 1 (0 otherwise).  
   
 #### **2.2. Indenpendent Variables**  
-**State** - State in which the company is established 
+**State** - State in which the company is established  
 *to check if there is any insituational effect derived from the corporate law of each State and the quality of the enforcement of the contract*  
 
 #### **2.3. Control Variables**  
   
   
-### [**A2.**] Ownership similarity and Target selection
+### [**A2.**] New Deals and Performance
 #### **2.4. Dependent Variable**
 #### **2.5. Indenpendent Variables**
 #### **2.6. Control Variables**
