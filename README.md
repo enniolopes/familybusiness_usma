@@ -1,65 +1,74 @@
-# Family Business US Merge and Acquisition Project
-            
-This project has the following tasks:
-- Extract, Read and Merge raw data
-- Treat the raw data to tidy data
-- Load the final data to analysis
+# Family Business US Merge and Acquisition (M&A) Project
 
+## Objective
+Create a database that can be used to test the following assumptions:  
+**(1)** Does ownership similarity affect target selection in M&A operations? (Bettinazzi et al 2018) [**A1.**]  
+**(2)** Are there new deals if performance is not as expected in initial M&A operations? [**A2.**]  
 
-## Define Variables
+## Scope - Work Breakdown Structure
+**1. Map the project**  
+      1.1. Scope  
+      1.2. Timeline  
+  
+**2. Define variables**  
+      2.1. [**A1.**] dependent variables  
+      2.2. [**A1.**] indenpendent (explanatory) variables  
+      2.3. [**A1.**] control variables  
+      2.4. [**A2.**] dependent Variables  
+      2.5. [**A2.**] indenpendent (explanatory) variables  
+      2.6. [**A2.**] control variables  
+  
+**3. Define sample**  
+      3.1. Data source  
+      3.2. Restrictions (region, period, company types, and others)  
+      3.3. Definition of computation of variables for [**A1.**]  
+      3.4. Definition of computation of variables for [**A2.**]  
+      3.5. Defining which variables to extract for [**A1.**]  
+      3.6. Defining which variables to extract for [**A2.**]  
+  
+**4. Extract, read and merge samples (raw data) from source database**  
+      4.1. Select all the targets variables and join fracted files  
+      4.2. Merge all different databases  
+      4.3. Test for integrity and consistence  
+      4.4. Export merged file  
+  
+**5. Treat the raw data to tidy data**  
+      5.1. Filter for restrictions from 2.2.  
+      5.2. Treat missing values  
+      5.3. Compute variables  
+      5.4. Rename variables and fit the database for analysis  
+      5.5. Export tidy data  
+  
+**6. Load the final data to analysis**  
+      6.1. Check data documentation  
+      6.2. Provide URL data and documentation  
+  
+## Timeline
 
-(TO TRANSLATE)
-
-Vari?vel Dependente:
-       Ocorr?ncia de aquisi??o (vari?vel bin?ria)
-Valida??o de todos os eventos de aquisi??es usando v?rias fontes, 
-incluindo documentos de an?ncio de negocia??o e artigos de jornal
-
-
-Vari?veis Independentes:
-       (1)   Classifica??o discreta do tipo de propriedade (quem controla a maioria das a??es) 
- a fim de avaliar a correspond?ncia entre as empresas adquirente e alvo. Tipos de propriet?rios: 
-       (1) fam?lia, 
- (2) multinacional estrangeira, 
- (3) coaliz?o de investidores privados, 
- (4) cooperativa, 
- (5) private equity, fundos de investimento, 
- (6) bancos e 
- (7) municipalidades estaduais ou municipais.
- 
- (O controle ? medido se um determinado propriet?rio possui pelo menos 50% das a??es da empresa ou 
-       25% se a empresa estiver listada).
- Cria??o de uma dummy que assume valor 1 quando as duas empresas compartilham o mesmo tipo de propriedade 
- antes da aquisi??o e 0 caso contr?rio.
- 
- (2)	Similaridade no comprometimento da propriedade. Uma medida mais sutil da dist?ncia entre os tipos de 
- propriedade.
- Classificam os tipos de propriedade identificados em (1) de acordo com o prov?vel envolvimento dos 
- acionistas com as principais prioridades de sua empresa.
- 
- N?vel de Comprometimento: 
-       - Muito Alto (pontua??o 4): alcan?ado em empresas familiares;
- - M?dio-Alto (pontua??o 3): empresas controladas por coaliz?es de investidores privados ou cooperativas vis-?-vis as empresas familiares;
- - M?dio-baixo (pontua??o 2): subsidi?rias de multinacionais estrangeiras e empresas estatais;
- - Muito baixo (pontua??o 1): empresas controladas por investidores financeiros (bancos, private equity ou fundos de investimento).
- 
- C?lculo da similaridade no compromisso de propriedade: 
-       inverso do valor absoluto da diferen?a entre o escore do adquirente e o do alvo: 
-       a vari?vel assume o valor de 
- 3 quando as duas empresas t?m o mesmo compromisso de propriedade, 
- 0 quando eles diferem completamente e 1 ou 2 quando diferem apenas moderadamente.
- 
- (3)	Grau de envolvimento da fam?lia em atividades da empresa para avaliar a similaridade entre o 
- adquirente e o alvo.
- Classifica??o das empresas: 
-       (1) propriedade familiar e controle familiar: a maioria das a??es est? nas m?os de uma 
- fam?lia e todos os conselheiros s?o membros da fam?lia controladora; 
- (2) propriedade familiar: a maioria das a??es est? nas m?os de uma fam?lia, 
- mas nem todos os membros do conselho s?o da fam?lia controladora; e 
- (3) n?o familiar: a maioria das a??es n?o ? controlada por uma fam?lia
- 
- Medida de similaridade no envolvimento familiar: 
-       - Similaridade Alta (pontua??o 2): as duas empresas fazem parte do mesmo cluster;
- - Similaridade Moderada (pontua??o 1): tanto o adquirente como as firmas-alvo s?o de propriedade familiar, mas apenas um dos dois ? controlado pela fam?lia;
- - Dissimilaridade Moderada (pontua??o ???1): uma das duas empresas ? de propriedade familiar (mas n?o controlada) e a contraparte n?o ?;
- - Dissimilaridade Alta (pontua??o ???2): uma das duas empresas ? de propriedade n?o familiar e a contraparte ? de propriedade e controle familiar.
+Activities | Week 0 | Week 1 | Week 2 | Week 3 | Week 4
+---------- | :----: | :----: | :----: | :----: | :----:
+1.1. Scope | X |  |  |  | 
+1.2. Timeline | X |  |  |  | 
+2.1. [*A1.*] dependent variables |  | X |  |  | 
+2.2. [*A1.*] indenpendent (explanatory) variables |  | X |  |  | 
+2.3. [*A1.*] control variables |  | X |  |  | 
+2.4. [*A2.*] dependent Variables |  | X |  |  | 
+2.5. [*A2.*] indenpendent (explanatory) variables |  | X |  |  | 
+2.6. [*A2.*] control variables |  | X |  |  | 
+3.1. Data source |  | X |  |  | 
+3.2. Restrictions (region, period, company types, and others) |  | X |  |  | 
+3.3. Definition of computation of variables for [*A1.*] |  | X |  |  | 
+3.4. Definition of computation of variables for [*A2.*] |  | X | X |  | 
+3.5. Defining which variables to extract for [*A1.*] |  | X |  |  | 
+3.6. Defining which variables to extract for [*A2.*] |  | X | X |  | 
+4.1. Select all the targets variables and join fracted files |  |  | X | X | 
+4.2. Merge all different databases |  |  | X | X | 
+4.3. Test for integrity and consistence |  |  | X | X | 
+4.4. Export merged file |  |  | X | X | 
+5.1. Filter for restrictions from 2.2. |  |  |  |  | X
+5.2. Treat missing values |  |  |  |  | X
+5.3. Compute variables |  |  |  |  | X
+5.4. Rename variables and fit the database for analysis |  |  |  |  | X
+5.5. Export tidy data |  |  |  |  | X
+6.1. Check data documentation |  |  |  |  | X
+6.2. Provide URL data and documentation |  |  |  |  | X
