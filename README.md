@@ -44,31 +44,33 @@ Create a database that can be used to test the following assumptions:
       6.2. Provide URL data and documentation  
   
 ## Timeline
-
-Activities | Week 0 | Week 1 | Week 2 | Week 3 | Week 4
----------- | :----: | :----: | :----: | :----: | :----:
-1.1. Scope | X |  |  |  | 
-1.2. Timeline | X |  |  |  | 
-2.1. [*A1.*] dependent variables |  | X |  |  | 
-2.2. [*A1.*] indenpendent (explanatory) variables |  | X |  |  | 
-2.3. [*A1.*] control variables |  | X |  |  | 
-2.4. [*A2.*] dependent Variables |  | X |  |  | 
-2.5. [*A2.*] indenpendent (explanatory) variables |  | X |  |  | 
-2.6. [*A2.*] control variables |  | X |  |  | 
-3.1. Data source |  | X |  |  | 
-3.2. Restrictions (region, period, company types, and others) |  | X |  |  | 
-3.3. Definition of computation of variables for [*A1.*] |  | X |  |  | 
-3.4. Definition of computation of variables for [*A2.*] |  | X | X |  | 
-3.5. Defining which variables to extract for [*A1.*] |  | X |  |  | 
-3.6. Defining which variables to extract for [*A2.*] |  | X | X |  | 
-4.1. Select all the targets variables and join fracted files |  |  | X | X | 
-4.2. Merge all different databases |  |  | X | X | 
-4.3. Test for integrity and consistence |  |  | X | X | 
-4.4. Export merged file |  |  | X | X | 
-5.1. Filter for restrictions from 2.2. |  |  |  |  | X
-5.2. Treat missing values |  |  |  |  | X
-5.3. Compute variables |  |  |  |  | X
-5.4. Rename variables and fit the database for analysis |  |  |  |  | X
-5.5. Export tidy data |  |  |  |  | X
-6.1. Check data documentation |  |  |  |  | X
-6.2. Provide URL data and documentation |  |  |  |  | X
+  
+*status legend: c = complete; p = pending; d = doing*  
+  
+status| Activities | Week 0 | Week 1 | Week 2 | Week 3 | Week 4
+:----: |---------- | :----: | :----: | :----: | :----: | :----:
+c | 1.1. Scope | X |  |  |  | 
+c | 1.2. Timeline | X |  |  |  | 
+d | 2.1. [*A1.*] dependent variables |  | X |  |  | 
+d | 2.2. [*A1.*] indenpendent (explanatory) variables |  | X |  |  | 
+d | 2.3. [*A1.*] control variables |  | X |  |  | 
+p | 2.4. [*A2.*] dependent Variables |  | X |  |  | 
+p | 2.5. [*A2.*] indenpendent (explanatory) variables |  | X |  |  | 
+p | 2.6. [*A2.*] control variables |  | X |  |  | 
+p | 3.1. Data source |  | X |  |  | 
+p | 3.2. Restrictions (region, period, company types, and others) |  | X |  |  | 
+p | 3.3. Definition of computation of variables for [*A1.*] |  | X |  |  | 
+p | 3.4. Definition of computation of variables for [*A2.*] |  | X | X |  | 
+p | 3.5. Defining which variables to extract for [*A1.*] |  | X |  |  | 
+p | 3.6. Defining which variables to extract for [*A2.*] |  | X | X |  | 
+p | 4.1. Select all the targets variables and join fracted files |  |  | X | X | 
+p | 4.2. Merge all different databases |  |  | X | X | 
+p | 4.3. Test for integrity and consistence |  |  | X | X | 
+p | 4.4. Export merged file |  |  | X | X | 
+p | 5.1. Filter for restrictions from 2.2. |  |  |  |  | X
+p | 5.2. Treat missing values |  |  |  |  | X
+p | 5.3. Compute variables |  |  |  |  | X
+p | 5.4. Rename variables and fit the database for analysis |  |  |  |  | X
+p | 5.5. Export tidy data |  |  |  |  | X
+p | 6.1. Check data documentation |  |  |  |  | X
+p | 6.2. Provide URL data and documentation |  |  |  |  | X
