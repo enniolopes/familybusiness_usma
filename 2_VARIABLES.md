@@ -67,8 +67,9 @@ firms operate
 **New Deal Occurrence** - dummy variable that describes every shares acquisitions until the control.  If an acquisition occurs and the acquiring company did not have control before the operation the dummy assumes value 1. (0 otherwise).  
   
 #### **2.5. Indenpendent Variables**  
-#### **2.6. Control Variables**  
   
+#### **2.6. Control Variables**  
+The same from 2.3.  
   
   
 ### [**General Definitions.**]  

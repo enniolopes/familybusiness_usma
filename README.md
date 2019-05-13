@@ -51,12 +51,12 @@ status| Activities | Week 0 | Week 1 | Week 2 | Week 3 | Week 4
 :----: |---------- | :----: | :----: | :----: | :----: | :----:
 c | 1.1. Scope | X |  |  |  | 
 c | 1.2. Timeline | X |  |  |  | 
-d | 2.1. [*H1.*] dependent variables |  | X |  |  | 
-d | 2.2. [*H1.*] indenpendent (explanatory) variables |  | X |  |  | 
-d | 2.3. [*H1.*] control variables |  | X |  |  | 
+c | 2.1. [*H1.*] dependent variables |  | X |  |  | 
+c | 2.2. [*H1.*] indenpendent (explanatory) variables |  | X |  |  | 
+c | 2.3. [*H1.*] control variables |  | X |  |  | 
 p | 2.4. [*H2.*] dependent Variables |  | X |  |  | 
 p | 2.5. [*H2.*] indenpendent (explanatory) variables |  | X |  |  | 
-p | 2.6. [*H2.*] control variables |  | X |  |  | 
+c | 2.6. [*H2.*] control variables |  | X |  |  | 
 p | 3.1. Data source |  | X |  |  | 
 p | 3.2. Restrictions (region, period, company types, and others) |  | X |  |  | 
 p | 3.3. Definition of computation of variables for [*H1.*] |  | X |  |  | 
