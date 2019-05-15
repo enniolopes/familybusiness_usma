@@ -70,7 +70,3 @@ firms operate
   
 #### **2.6. Control Variables**  
 The same from 2.3.  
-  
-  
-### [**General Definitions.**]  
-**Firm Control** - control is defined if the owner owns at least 50% of the company shares or 25% if the company is listed.  
