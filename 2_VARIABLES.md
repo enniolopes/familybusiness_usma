@@ -5,7 +5,7 @@
 *Bettinazzi, E. L., Miller, D., Amore, M. D., & Corbetta, G. (2018). Ownership similarity in mergers and acquisitions target selection. Strategic Organization, 1476127018801294.*  
   
 #### **2.1. Dependent Variable**  
-**Acquisition Occurrence** - dummy variable that describes if the acquisition occurred (acquisition implies control). If the final shareholding is greater than 50% and the initial is less than 50% the Dummy assumes value 1 (0 otherwise).  
+**Acquisition Occurrence** - dummy variable that describes if the acquisition occurred (acquisition implies control).  
   
 #### **2.2. Indenpendent Variables**  
 **Ownership Correspondence** - dummy variable which assumes value 1 when the two firms share the same type of ownership before the deal (0 otherwise).  
