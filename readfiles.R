@@ -49,7 +49,7 @@ if(length(fin)+length(own)+length(deal) == length(file_list)) {
       print("file_list split error: check lines")
 }
 
-#  USDEALS LOAD: -------------------------------------------------------
+# USDEALS READ: -------------------------------------------------------
 
 #loop to read all deal xlsx files compressed in zip
 start_time <- Sys.time()
@@ -97,7 +97,7 @@ print(str_c("Read files running time: ", round(end_time - start_time,0), " min."
 rm(end_time,start_time,n)
 unique(dealdata$filename)
 
-#  USDEALS TREAT: -------------------------------------------------------
+# USDEALS TREAT: -------------------------------------------------------
 
 colnames(dealdata) <- c(
    "dborder",
@@ -184,7 +184,120 @@ for (i in datec) {
 rm(i, datec)
 
 
-#  USDEALS LOAD: -------------------------------------------------------
+# USDEALS LOAD: -------------------------------------------------------
 # for MacIOS use the parameter fileEncoding = "macroman"
 write.csv2(dealdata, file = "dealdata.csv")
-rm(dealdata)
+rm(dealdata, deal)
+
+
+# USDEALS FIN READ: -------------------------------------------------------
+
+#loop to read all fin xlsx files compressed in zip
+start_time <- Sys.time()
+findata <- NULL
+
+system.time({
+   for (n in 1:length(fin)) {
+      unzip(zipfile, fin[n], overwrite = T)
+      dealread <- read_xlsx(fin[n], 
+                            sheet = "Results", 
+                            col_names = T, 
+                            na = "n.a.", 
+                            col_types = rep("text",270))
+      
+      #Clean all missing values lines 
+      dealread <- dealread[rowSums(
+         is.na(select(dealread,
+                      -1,
+                      -2,
+                      -`Target listed`,
+                      -`Acquiror listed`))) != (ncol(dealread)-4),]
+      
+      
+      #NAs replace with the above value in the same dealnumber
+      dealnumber <- as.data.frame(unique(dealread[,2]), stringsAsFactors = F)[,1]
+      for (i in dealnumber) {
+         temp <- dplyr::filter(dealread, `Deal Number` == i)[[1]][1]
+         if(!is.na(temp)) {
+            dealread[dealread[,"Deal Number"]==i & 
+                        !is.na(dealread[,"Deal Number"]) & 
+                        is.na(dealread[,1]),1] <- temp
+            rm(temp)
+         }
+      }
+      rm(dealnumber)
+      
+      
+      dealread <- unique(dealread)
+      dealread$filename <- fin[n]
+      
+      findata <- bind_rows(findata, dealread)
+      rm(dealread,i)
+      file.remove(fin[n])
+   }
+})
+
+end_time <- Sys.time()
+print(str_c("Read files running time: ", round(end_time - start_time,0), " min."))
+rm(end_time,start_time,n)
+unique(findata$filename)
+
+
+write.csv2(findata, file = "findata.csv")
+rm(findata, fin)
+
+
+# USDEALS OWN READ: -------------------------------------------------------
+
+#loop to read all own xlsx files compressed in zip
+start_time <- Sys.time()
+owndata <- NULL
+
+system.time({
+   for (n in 1:length(own)) {
+      unzip(zipfile, own[n], overwrite = T)
+      dealread <- read_xlsx(own[n], 
+                            sheet = "Results", 
+                            col_names = T, 
+                            na = "n.a.", 
+                            col_types = rep("text",72))
+      
+      #Clean all missing values lines 
+      dealread <- dealread[rowSums(
+         is.na(select(dealread,
+                      -1,
+                      -2,
+                      ))) != (ncol(dealread)-2),]
+      
+      
+      #NAs replace with the above value in the same dealnumber
+      dealnumber <- as.data.frame(unique(dealread[,2]), stringsAsFactors = F)[,1]
+      for (i in dealnumber) {
+         temp <- dplyr::filter(dealread, `Deal Number` == i)[[1]][1]
+         if(!is.na(temp)) {
+            dealread[dealread[,"Deal Number"]==i & 
+                        !is.na(dealread[,"Deal Number"]) & 
+                        is.na(dealread[,1]),1] <- temp
+            rm(temp)
+         }
+      }
+      rm(dealnumber)
+      
+      
+      dealread <- unique(dealread)
+      dealread$filename <- own[n]
+      
+      owndata <- bind_rows(owndata, dealread)
+      rm(dealread,i)
+      file.remove(own[n])
+   }
+})
+
+end_time <- Sys.time()
+print(str_c("Read files running time: ", round(end_time - start_time,0), " min."))
+rm(end_time,start_time,n)
+unique(owndata$filename)
+
+write.xlsx2(owndata, "owndata.xlsx")
+
+rm(owndata, own, zipfile)
