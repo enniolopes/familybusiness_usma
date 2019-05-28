@@ -5,7 +5,7 @@
 *Bettinazzi, E. L., Miller, D., Amore, M. D., & Corbetta, G. (2018). Ownership similarity in mergers and acquisitions target selection. Strategic Organization, 1476127018801294.*  
   
 #### **2.1. Dependent Variable**  
-**Acquisition Occurrence** - dummy variable that describes if the acquisition occurred (acquisition implies control).  
+**New Acquisition Occurrence** - variable that describes stake aquisitions from acquires that do NOT have participation on target firm (stake = 0%) defined into 3 acquisition levels: control, joint venture and minority aquisitions  
   
 #### **2.2. Indenpendent Variables**  
 **Ownership Correspondence** - dummy variable which assumes value 1 when the two firms share the same type of ownership before the deal (0 otherwise).  
@@ -62,11 +62,12 @@ firms operate
 *current assets of the acquiring firm*  
   
     
-### [**H2.**] New Deals and Performance  
+### [**H2.**] Deals Increments and Performance  
 #### **2.4. Dependent Variable**  
-**New Deal Occurrence** - dummy variable that describes every shares acquisitions until the control.  If an acquisition occurs and the acquiring company did not have control before the operation the dummy assumes value 1. (0 otherwise).  
+**Deal Increment Occurrence** - variable that describes stake aquisitions from acquires that ALREADY have participation on target firm (stake > 0%) defined in 3 acquisition levels: control, joint venture and minority aquisitions  
   
 #### **2.5. Indenpendent Variables**  
+The same from 2.2.  
   
 #### **2.6. Control Variables**  
 The same from 2.3.  
