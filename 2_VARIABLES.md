@@ -24,20 +24,22 @@
   
   
 **Family Involvement Similarity** - dyads composed of family owned and nonfamily owned firms are less similar than dyads where one firm is both owned and controlled by a family and the other is family owned only.  
-*variable takes the value:*  
+variable takes the value:  
   *(2) high similarity: both firms are a part of the same cluster*  
   *(1) moderate similarity: both firms are family owned but only one of the two is controlled by the family*  
-  *(-1) moderate dissimilarity: one of the two firms is family owned (but not controlled) and the counterpart is not*  
+  *(-1) moderate dissimilarity: one of the two firms is family owned (but not controlled) and the counterpart is non-family owned*  
   *(-2) high dissimilarity: one of the two firms is non-family owned and the counterpart is family owned and controlled.*  
-*degree of family involvement the clusters:*  
+degree of family involvement the clusters:  
   *(A) family owned and family controlled*  
   *(B) family owned*  
   *(C) non-family owned*  
   
   
 #### **2.3. Control Variables**  
-**State** - State in which the company is established.  
+**Geographical similarity** - geographical distance can have negative impact on the likelihood of acquisition between two firms.  
 *to check if there is any institutional effect derived from the corporate law of each State and the quality of the enforcement of the contract*  
+*dummy that takes the value of 1 if the two firms belong to the same state and 0 otherwise*  
+    
   
 **Relative performance** - absolute value of the difference between the firm’s ROA, divided by the absolute value of the sum of the two firms’ ROA, in the year before the acquisition  
   
@@ -47,21 +49,19 @@
 
 **Business similarity** - similarity between the industry sectors in which two
 firms operate  
-*4-digit ATECO codes, Where the codes match at the 4-digit level a similarity value of 4 is assigned, where they match at 3, 2, or 1-digit level, a 3, 2, or 1 is assigned, respectively and 0 otherwise)*  
+*6-digit NAICS codes, Where the codes match at the 6-digit level a similarity value of 3 is assigned, where they match at 4 or 2-digit level, value 2 or 1 is assigned, respectively and 0 otherwise)*  
   
-**Similarity Ownership Concentration** - ownership concentration can influence firm’s priorities, decision mechanisms, and in turn, performance  
+**Similarity Ownership Concentration** - ownership concentration can influence firm’s priorities, decision mechanisms, and in turn, performance.  
 *ratio between the number of shareholders with more than 2% of shares of the acquiring firm and those of the target firm*  
   
-**Geographical similarity** - geographical distance can have negative impact on the likelihood of acquisition between two firms  
-*dummy that takes the value of 1 if the two firms belong to the same province and 0 otherwise*  
-    
-**Industry Concentration** - firms in concentrated markets, particularly in related industries, may be more apt to pursue acquisitions to enhance profit margins  
-*concentration of the sectors of the firms using the 8-firm concentration ratios of the two industries at the ATECO 2-digit level*  
   
+**Industry Concentration** - firms in concentrated markets, particularly in related industries, may be more apt to pursue acquisitions to enhance profit margins  
+*concentration of the sectors of the firms using the 50-firm concentration ratios of the NAICS 4-digit level*  
+    
 **Cash Slack** - Acquirer’s cash position  
 *current assets of the acquiring firm*  
   
-    
+  
 ### [**H2.**] Deals Increments and Performance  
 #### **2.4. Dependent Variable**  
 **Deal Increment Occurrence** - variable that describes stake aquisitions from acquires that ALREADY have participation on target firm (stake > 0%) defined in 3 acquisition levels: control, joint venture and minority aquisitions  
@@ -71,3 +71,58 @@ The same from 2.2.
   
 #### **2.6. Control Variables**  
 The same from 2.3.  
+  
+  
+#### Appendix A - Variables Dictionary    
+  
+* **USDeals.xlsx variables**  
+
+Original Name | New Name | Description  
+:- | :- | :-  
+- | dborder | -  
+Deal Number | dealnumber | -  
+Deal value th EUR...3 | dealvalueEUR | -  
+Deal value (Native currency) th LCU | dealvalueNative | -  
+Deal equity value th EUR | dealequityvalueEUR | -  
+Deal equity value (Native currency) th LCU | dealequityvalueEURNative | -  
+Deal enterprise value th EUR | dealenterprisevalueEUR | -  
+Deal enterprise value (Native currency) th LCU | dealenterprisevalueNative | -  
+Deal modelled enterprise value th EUR | dealmodelledenterprisevalueEUR | -  
+Deal modelled enterprise value (Native currency) th LCU | dealmodelledenterprisevalueNative | -  
+Deal total target value th EUR | dealtotaltargetvalueEUR | -  
+Deal total target value (Native currency) th LCU | dealtotaltargetvalueNative | -  
+Initial stake (%) | initialstake | -  
+Acquired stake (%) | acquired stake | -  
+Final stake (%) | finalstake | -  
+Native currency | nativecurrency | -  
+Deal type...20 | dealtype | -  
+Deal status...25 | dealstatus | -  
+Rumour date | daterumour | -  
+Announced date | dateannounced | -  
+Completed date | datecompleted | -  
+Last deal status date | datelastdealstatus | -  
+Last update | datelastupdate | -  
+Deal headline | dealheadline | -  
+Deal type...42 | dealtypeb | -  
+Deal value th EUR...44 | dealvalueEURb | -  
+Target name | targetname | -  
+Target country code | targetcountrycode | -  
+Target business description(s) | targetbusinessdescription | -  
+Target BvD ID number | targetBvDID | -  
+Acquiror name | acquirorname | -  
+Acquiror country code | acquirorcountrycode | -  
+Acquiror business description(s) | acquirorbusinessdescription | -  
+Acquiror BvD ID number | acquirorBvDIDnumber | -  
+Group acquiror name | groupacquirorname | -  
+Group acquiror country code | groupacquirorcountrycode | -  
+Group acquiror business description(s) | groupacquirorbusinessdescription | -  
+Group acquiror BvD ID number | groupacquirorBvDID | -  
+Vendor name | vendorname | -  
+Vendor country code | vendorcountrycode | -  
+Vendor business description(s) | vendorbusinessdescription(s) | -  
+Vendor BvD ID number | vendorBvDID | -  
+Group vendor name | groupvendorname | -  
+Group vendor country code | groupvendorcountrycode | -  
+Group vendor business description(s) | groupvendorbusinessdescription | -  
+Group vendor BvD ID number | groupvendorBvDID | -  
+filename | filename | -  
