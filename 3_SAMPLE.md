@@ -106,7 +106,7 @@ In cases that the initial stake and final stake are *'Unknow %'* the levels are 
 #### Appendix A - Target Data Base    
 An example of the database to be achieved:  
   
-newao | newao_origin | owncorresp | owncommit | familysimilarity | state | roaperformance | size | naicssimilarity | acquirorconcentration | targetconcentration | acquiror_ebitda_eur_year1 | target_ebitda_eur_year1 | cashslack | newdo | newdo_origin
+newao | newao_origin | owncorresp | owncommit | familysimilarity | state | roaperformance | size | naicssimilarity | acquirorconcentration | targetconcentration | acquiror_ebitda_eur_year1 | target_ebitda_eur_year1 | cashslack | newdo | newdo_origin  
 :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :-  
 0 | 0 | NA | NA | NA | 1 | 0.42 | 0.23 | 1 | 0.70 | 0.10 | 100000 | 56000 | 2.3 | 0 | 1  
 1 | 1 | NA | NA | NA | 1 | 0.02 | 0.05 | 2 | 0.23 | 0.15 | 236000 | 99000 | 0.4 | 1 | 0  

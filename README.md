@@ -58,12 +58,12 @@ C | 2.4. [*H2.*] dependent Variables |  | X |  |  |
 C | 2.5. [*H2.*] indenpendent (explanatory) variables |  | X |  |  | 
 c | 2.6. [*H2.*] control variables |  | X |  |  | 
 c | 3.1. Data source |  | X |  |  | 
-p | 3.2. Restrictions (region, period, company types, and others) |  | X |  |  | 
-p | 3.3. Definition of computation of variables for [*H1.*] |  | X |  |  | 
-p | 3.4. Definition of computation of variables for [*H2.*] |  | X | X |  | 
-p | 3.5. Defining which variables to extract for [*H1.*] |  | X |  |  | 
-p | 3.6. Defining which variables to extract for [*H2.*] |  | X | X |  | 
-p | 4.1. Select all the targets variables and join fracted files |  |  | X | X | 
+c | 3.2. Restrictions (region, period, company types, and others) |  | X |  |  | 
+c | 3.3. Definition of computation of variables for [*H1.*] |  | X |  |  | 
+c | 3.4. Definition of computation of variables for [*H2.*] |  | X | X |  | 
+c | 3.5. Defining which variables to extract for [*H1.*] |  | X |  |  | 
+c | 3.6. Defining which variables to extract for [*H2.*] |  | X | X |  | 
+c | 4.1. Select all the targets variables and join fracted files |  |  | X | X | 
 p | 4.2. Merge all different databases |  |  | X | X | 
 p | 4.3. Test for integrity and consistence |  |  | X | X | 
 p | 4.4. Export merged file |  |  | X | X | 
