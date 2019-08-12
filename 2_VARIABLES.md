@@ -9,8 +9,22 @@
   
 #### **2.2. Indenpendent Variables**  
 **Ownership Correspondence** - dummy variable which assumes value 1 when the two firms share the same type of ownership before the deal (0 otherwise).  
-*to assess the correspondence between acquirer and target firms, the type of ownership is classified as: (1) family; (2) foreign multinational; (3) coalition of private investors; (4) cooperative; (5) private equity, investment funds; (6) banks; and (7) state or local municipalities*  
-  
+*to assess the correspondence between acquirer and target firms, the type of ownership is classified as: 
+(1) Corporate; 
+(2) Mutual and pension fund, nominee, trust, trustee; 
+(3) Financial company; 
+(4) Bank; 
+(5) Private equity firm; 
+(6) Public authority, state, government; 
+(7) Insurance company; 
+(8) Family; 
+(9) Hedge fund; 
+(10) Venture capital; 
+(11) Foundation, research Institute; 
+(12) Self ownership; 
+(13) Employees, managers, directors; 
+(14) FREE-FLOAT.*  
+    
 **Ownership Commitment Similarity** - degrees of owner commitment and involvement with strategic decisions (such as acquisitions).  
 *measured as the inverse of the absolute value of the difference between the score of acquirer and the one of the target, variable takes the value:*  
   *(3) have the same ownership commitment*  

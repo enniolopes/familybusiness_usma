@@ -35,13 +35,33 @@ In cases that the initial stake and final stake are *'Unknow %'* the levels are 
   
   
 **Ownership Correspondence** [*owncorresp*]  
-<span style="color:red">insuficient information about the type of ownership (family, foreign multinational, etc.)</span>  
+We changed the original type to correspond to the types listed bellow:  
   
+Original Type from data | Correspondence  
+:-|:-  
+Corporate | Corporate  
+Mutual and pension fund, nominee, trust, trustee | Mutual and pension fund, nominee, trust, trustee  
+Financial company | Financial company  
+Bank | Bank  
+Private equity firm | Private equity firm  
+Public authority, state, government | Public authority, state, government  
+Insurance company | Insurance company  
+One or more named individuals or families | Family  
+Hedge fund | Hedge fund  
+Venture capital | Venture capital  
+Foundation, research Institute | Foundation, research Institute  
+Self ownership | Self ownership  
+Other unnamed shareholders, aggregated | FREE-FLOAT  
+Public | FREE-FLOAT  
+Employees, managers, directors | Employees, managers, directors  
+Unnamed private shareholders, aggregated | FREE-FLOAT  
+    
+<span style="color:red">create variables</span>  
   
 **Ownership Commitment Similarity** [*owncommit*]   
   
 [owncommit_score]  
-<span style="color:red">insuficient information about the type of ownership (family, foreign multinational, etc.)</span>  
+<span style="color:red">create variables</span>  
   
   
 **Family Involvement Similarity** [*familysimilarity*]  
@@ -104,15 +124,66 @@ In cases that the initial stake and final stake are *'Unknow %'* the levels are 
   
   
 #### Appendix A - Target Data Base    
-An example of the database to be achieved:  
-  
-newao | newao_origin | owncorresp | owncommit | familysimilarity | state | roaperformance | size | naicssimilarity | acquirorconcentration | targetconcentration | acquiror_ebitda_eur_year1 | target_ebitda_eur_year1 | cashslack | newdo | newdo_origin  
-:- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :- | :-  
-0 | 0 | NA | NA | NA | 1 | 0.42 | 0.23 | 1 | 0.70 | 0.10 | 100000 | 56000 | 2.3 | 0 | 1  
-1 | 1 | NA | NA | NA | 1 | 0.02 | 0.05 | 2 | 0.23 | 0.15 | 236000 | 99000 | 0.4 | 1 | 0  
-2 | 0 | NA | NA | NA | 0 | 0.11 | 0.56 | 3 | 0.40 | 0.33 | 678000 | 74000 | 4.8 | 2 | 1  
-  
-  
+This appendix descripes the variables of the database to be achieved divided into two groups, the first one details all variables used to achieve the final variables for the analysis.  
+To join tables we use two steps, first the join is done using left join with the deals data and ownership data. Using the deal number as a key for the join was not possible because it is not unique, so we create a new key combining the variables {dealnumber,targetbvdidnumber,acquirorbvdidnumber}.  
+The result is a matrix with the variables:  
+{
+key, 
+filename, 
+dealnumber, 
+dealstatus, 
+dealtype, 
+nativecurrency, 
+dealvalueeur, 
+dealvaluenative, 
+dealequityvalueeur, 
+dealequityvalueeurnative, 
+daterumour, 
+dateannounced, 
+assumedcompletiondate, 
+datecompleted, 
+datelastdealstatus, 
+targetname, 
+targetbvdid, 
+targetcountrycode, 
+targetregion, 
+targetprimarynaics2017code, 
+acquirorname, 
+acquirorbvdid, 
+acquirorcountrycode, 
+acquirorregion, 
+acquirorprimarynaics2017code, 
+initialstake, 
+finalstake, 
+initialstake_est, 
+finalstake_est, 
+stakevariation_est, 
+targetshareholdersname_first, 
+targetshareholdersname_second, 
+targetshareholdersname_third, 
+targetshareholdersbvdnumber_first, 
+targetshareholdersbvdnumber_second, 
+targetshareholdersbvdnumber_third, 
+targetshareholderstype_first, 
+targetshareholderstype_second, 
+targetshareholderstype_third, 
+targetshareholdersdirect_first, 
+targetshareholdersdirect_second, 
+targetshareholdersdirect_third, 
+acquirorshareholdersname_first, 
+acquirorshareholdersname_second, 
+acquirorshareholdersname_third, 
+acquirorshareholdersbvdnumber_first, 
+acquirorshareholdersbvdnumber_second, 
+acquirorshareholdersbvdnumber_third, 
+acquirorshareholderstype_first, 
+acquirorshareholderstype_second, 
+acquirorshareholderstype_third, 
+acquirorshareholdersdirect_first, 
+acquirorshareholdersdirect_second, 
+acquirorshareholdersdirect_third}
+
+
 #### Appendix B - Data Dictionary    
 
 Variable | Origin | Description  

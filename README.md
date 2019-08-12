@@ -65,8 +65,8 @@ c | 3.5. Defining which variables to extract for [*H1.*] |  | X |  |  |
 c | 3.6. Defining which variables to extract for [*H2.*] |  | X | X |  | 
 c | 4.1. Select all the targets variables and join fracted files |  |  | X | X | 
 p | 4.2. Merge all different databases |  |  | X | X | 
-p | 4.3. Test for integrity and consistence |  |  | X | X | 
-p | 4.4. Export merged file |  |  | X | X | 
+c | 4.3. Test for integrity and consistence |  |  | X | X | 
+c | 4.4. Export merged file |  |  | X | X | 
 p | 5.1. Filter for restrictions from 3.2. |  |  |  |  | X
 p | 5.2. Treat missing values |  |  |  |  | X
 p | 5.3. Compute variables |  |  |  |  | X

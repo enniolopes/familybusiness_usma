@@ -1,24 +1,4 @@
-# title: "US DEALS"
-# updates:
-      #02-may-2019: Ennio
-            #read the USDEALS xlsx files
-            #drop columns
-            #replace blank values with the first value of the column for each deal number
-            #loop to read all USDeals.xlsx
-      #03-may-2019: Ennio
-            #bug "missing values are not allowed in subscripted assignments of data frames" fixed (in USDEALS READ for loop)
-      #17-may-2019: Ennio
-            #Treat data: colnames
-            #Treat data: clean duplicated dealtype, dealvalue
-            #Treat data: trim and declare values variables
-            #Treat data: declare date variables
-      #18-may-2019: Ennio
-            #Test final deal data and integrity check
-            #write csv for clean deal data (dealdata.csv)
-      #16-jun-2019: Ennio
-            #read and treat fin and own data
-            #write csv for (dealfin.csv and dealown.csv)
-
+setwd("/home/suporte/Downloads/data_analysis/")
 
 # SETUP ------------------------------------------------------------
 #local files
@@ -31,7 +11,8 @@ library(xlsx)
 # DEFINE FILES ------------------------------------------------------------
 
 #Select the zipfile "USDEALS_WIN.zip":
-zipfile <- choose.files()
+zipfile <- "USDeals_WIN.zip"
+#zipfile <- choose.files()
 file_list <- unzip(zipfile = zipfile, list = T)["Name"]
 file_list <- as.character(file_list[1:nrow(file_list),"Name"])
 
@@ -57,45 +38,29 @@ if(length(fin)+length(own)+length(deal) == length(file_list)) {
 #loop to read all deal xlsx files compressed in zip
 start_time <- Sys.time()
 dealdata <- NULL
-
-#time elapse to read: 9hrs
+linescounter = 0
+#time elapse to read: 
 for (n in 1:length(deal)) {
    unzip(zipfile, deal[n], overwrite = T)
-   dealread <- read_xlsx(deal[n], 
+   dealread <- read_xlsx(deal[n],
                          sheet = "Results", 
                          col_names = T, 
                          na = "n.a.", 
                          col_types = rep("text",206))
+   totalrows <- nrow(dealread)
+   dealread <- dealread[rowSums(is.na(dealread)) != ncol(dealread),]
+   dealread <- unique(dealread)
+   linescounter = linescounter + totalrows - nrow(dealread) ; rm(totalrows)
    dealread$filename <- deal[n]
-
-   #NAs replace with the above value in the same dealnumber
-   dealnumber <- as.data.frame(unique(dealread[,2]), stringsAsFactors = F)[,1]
-
-      for (i in dealnumber) {
-         for (j in 1:ncol(dealread)) {
-            temp <- dplyr::filter(dealread, `Deal Number` == i)[[j]][1]
-            if(!is.na(temp)) {
-               dealread[dealread[,2]==i & 
-                           !is.na(dealread[,2]) & 
-                           is.na(dealread[,j]),j] <- temp
-               rm(temp)
-            }
-         }
-         rm(j)
-      }
-      rm(dealnumber)
-
    dealdata <- bind_rows(dealdata, dealread)
-   rm(dealread,i)
+   rm(dealread)
    file.remove(deal[n])
-}
-
-dealdata <- dealdata[rowSums(is.na(select(dealdata,-filename))) != (ncol(dealdata)-1),]
-dealdata <- unique(dealdata)
-
+} ; rm(n)
 end_time <- Sys.time()
-print(str_c("Read files running time: ", round(end_time - start_time,0), " min."))
-rm(end_time,start_time,n)
+
+print(str_c("Read files running time - initiated at: ", start_time, "finished at: ",end_time))
+print(str_c("Total of rows removed: ", linescounter))
+rm(end_time,start_time,linescounter)
 unique(dealdata$filename)
 
 # USDEALS TREAT: -------------------------------------------------------
@@ -311,65 +276,47 @@ colnames(dealdata) <- c(
 
 # USDEALS LOAD: -------------------------------------------------------
 # for MacIOS use the parameter fileEncoding = "macroman"
+#write.csv2(dealdata, file = "dealdataMACOS.csv", fileEncoding = "macroman")
 write.csv2(dealdata, file = "dealdata.csv")
-write.csv2(dealdata, file = "dealdataMACOS.csv", fileEncoding = "macroman")
 rm(dealdata, deal)
 
 
-# USDEALS FIN READ: -------------------------------------------------------
+# USFIN READ: -------------------------------------------------------
 
 #loop to read all fin xlsx files compressed in zip
-#time elapse to read: 7 minutes
 start_time <- Sys.time()
 findata <- NULL
-
-system.time({
-   for (n in 1:length(fin)) {
-      unzip(zipfile, fin[n], overwrite = T)
-      dealread <- read_xlsx(fin[n], 
-                            sheet = "Results", 
-                            col_names = T, 
-                            na = "n.a.", 
-                            col_types = rep("text",270))
-      
-      #Clean all missing values lines 
-      dealread <- dealread[rowSums(
-         is.na(select(dealread,
-                      -1,
-                      -2,
-                      -`Target listed`,
-                      -`Acquiror listed`))) != (ncol(dealread)-4),]
-      
-      
-      #NAs replace with the above value in the same dealnumber
-      dealnumber <- as.data.frame(unique(dealread[,2]), stringsAsFactors = F)[,1]
-      for (i in dealnumber) {
-         temp <- dplyr::filter(dealread, `Deal Number` == i)[[1]][1]
-         if(!is.na(temp)) {
-            dealread[dealread[,"Deal Number"]==i & 
-                        !is.na(dealread[,"Deal Number"]) & 
-                        is.na(dealread[,1]),1] <- temp
-            rm(temp)
-         }
-      }
-      rm(dealnumber)
-      
-      
-      dealread <- unique(dealread)
-      dealread$filename <- fin[n]
-      
-      findata <- bind_rows(findata, dealread)
-      rm(dealread,i)
-      file.remove(fin[n])
-   }
-})
-
-findata <- findata[rowSums(is.na(select(findata,-filename))) != (ncol(findata)-1),]
-findata <- unique(findata)
-
+linescounter = 0
+#time elapse to read: 4 min.
+for (n in 1:length(fin)) {
+   unzip(zipfile, fin[n], overwrite = T)
+   dealread <- read_xlsx(fin[n], 
+                         sheet = "Results", 
+                         col_names = T, 
+                         na = "n.a.", 
+                         col_types = rep("text",270))
+   totalrows <- nrow(dealread)
+   #Clean all missing values lines 
+   dealread <- dealread[rowSums(
+      is.na(select(dealread,
+                   -1,
+                   -2,
+                   -`Target listed`,
+                   -`Acquiror listed`))) != (ncol(dealread)-4),]
+   
+   
+   dealread <- unique(dealread)
+   linescounter = linescounter + totalrows - nrow(dealread) ; rm(totalrows)
+   dealread$filename <- fin[n]
+   findata <- bind_rows(findata, dealread)
+   rm(dealread)
+   file.remove(fin[n])
+} ; rm(n)
 end_time <- Sys.time()
-print(str_c("Read files running time: ", round(end_time - start_time,0), " min."))
-rm(end_time,start_time,n)
+
+print(str_c("Read files running time - initiated at: ", start_time, "finished at: ",end_time))
+print(str_c("Total of rows removed: ", linescounter))
+rm(end_time,start_time,linescounter)
 unique(findata$filename)
 
 
@@ -649,21 +596,32 @@ colnames(findata) <- c(
    'filename')
 
 
+totalna <- sum(rowSums(is.na(findata)))
 #Trim number variables
 system.time({
    for (i in 1:242) {
       findata[[i]] <- as.numeric(findata[[i]])
    }
-})
+}) ; rm(i)
+
+print(str_c("Total of NAs inserted: ",
+            totalna - sum(rowSums(is.na(findata))),
+            " or ", round((totalna/sum(rowSums(is.na(findata))) - 1)*100,2),
+            "%"))
+totalna <- sum(rowSums(is.na(findata)))
 
 
 #Define date variables
 datec <- as.vector(which(grepl("date",x = colnames(findata), ignore.case = T)))
 for (i in datec) {
    findata[[i]] <- as.Date(findata[[258]], '%d/%m/%Y')
-}
-rm(i, datec)
+} ; rm(i, datec)
 
+print(str_c("Total of NAs inserted: ",
+            totalna - sum(rowSums(is.na(findata))),
+            " or ", round((totalna/sum(rowSums(is.na(findata))) - 1)*100,2),
+            "%"))
+rm(totalna)
 
 
 # USFIN LOAD: -------------------------------------------------------
@@ -673,52 +631,34 @@ rm(findata, fin)
 
 
 # USOWN READ: -------------------------------------------------------
-#loop to read all own xlsx files compressed in zip
-#limited RAM to read xlsx file USDealsOwn1.csv, partitioned to read file
-
+#loop to read all deal xlsx files compressed in zip
+start_time <- Sys.time()
 owndata <- NULL
-   for (n in 1:length(own)) {
-      unzip(zipfile, own[n], overwrite = T)
-      dealread <- read_xlsx(own[n],
-                            sheet = "Results",
-                            col_names = T,
-                            na = "n.a.",
-                            col_types = rep("text",72))
-      
-      #Clean all missing values lines 
-      dealread <- dealread[rowSums(
-         is.na(select(dealread,
-                      -1,
-                      -2,
-                      ))) != (ncol(dealread)-2),]
-      
-      
-      #NAs replace with the above value in the same dealnumber
-      dealnumber <- as.data.frame(unique(dealread[,2]), stringsAsFactors = F)[,1]
-      for (i in dealnumber) {
-         temp <- dplyr::filter(dealread, "Deal.Number" == i)[[1]][1]
-         if(!is.na(temp)) {
-            dealread[dealread[,"Deal.Number"]==i & 
-                        !is.na(dealread[,"Deal.Number"]) & 
-                        is.na(dealread[,1]),1] <- temp
-            rm(temp)
-         }
-      }
-      rm(dealnumber)
-      
-      
-      dealread <- unique(dealread)
-      dealread$filename <- own[n]
-      
-      owndata <- bind_rows(owndata,dealread)
-      rm(dealread,i)
-      file.remove(own[n])
-   }
+linescounter = 0
+#time elapse to read: 
+for (n in 1:length(own)) {
+   unzip(zipfile, own[n], overwrite = T)
+   dealread <- read_xlsx(own[n],
+                         sheet = "Results",
+                         col_names = T,
+                         na = "n.a.",
+                         col_types = rep("text",72))
+   totalrows <- nrow(dealread)
+   dealread <- dealread[rowSums(
+      is.na(select(dealread,-1,-2,))) != (ncol(dealread)-2),]
+   dealread <- unique(dealread)
+   linescounter = linescounter + totalrows - nrow(dealread) ; rm(totalrows)
+   dealread$filename <- own[n]
+   owndata <- bind_rows(owndata, dealread)
+   rm(dealread)
+   file.remove(own[n])
+} ; rm(n)
+end_time <- Sys.time()
 
-
+print(str_c("Read files running time - initiated at: ", start_time, "finished at: ",end_time))
+print(str_c("Total of rows removed: ", linescounter))
+rm(end_time,start_time,linescounter)
 unique(owndata$filename)
-print(str_c("Read files running time: ", round(end_time - start_time,0), " min."))
-rm(n)
 
 # USOWN TREAT: -------------------------------------------------------
 colnames(owndata) <- c(
@@ -797,9 +737,7 @@ colnames(owndata) <- c(
    "filename")
 
 
-# USFIN LOAD: -------------------------------------------------------
+# USOWN LOAD: -------------------------------------------------------
 # for MacIOS use the parameter fileEncoding = "macroman"
 write.csv2(owndata, file = "owndata.csv")
-write.csv2(owndata, file = "owndataMACOS.csv")
-
 rm(owndata, own, zipfile)
